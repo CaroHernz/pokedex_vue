@@ -47,6 +47,7 @@ npm install
 npm run dev
 ```
 4. **Abrir en el navegador**
+
 La aplicación estará disponible en: ` http://localhost:3000 `
 
 ## 📂 Estructura del proyecto
@@ -81,9 +82,9 @@ pokedex-vue/
 * **PokeAPI** - API de datos de Pokémon
 
 #### Creado por:
-<p align= center>
+<div align= center>
   <a href="https://github.com/CaroHernz">Carolina Hernández</a>
 
 **⭐ ¡Si te gusta este proyecto, dale una estrella en GitHub!**
 
-</p>
+</div>
