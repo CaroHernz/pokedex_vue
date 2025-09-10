@@ -1,4 +1,4 @@
-<center>
+<p align=center>
 
 <img src="public/ultraball_icon.png" alt= "Pokédex - Vue" width="90" height="90">
 
@@ -9,7 +9,7 @@ Aplicación web que consume PokeAPI para mostrar información de Pokémon, con f
 <img src="https://img.shields.io/badge/Bootstrap-5.x-7952B3?logo=bootstrap" >
 <img src="https://img.shields.io/badge/Vite-4.x-646CFF?logo=vite" >
 
-</center>
+</p>
 
 ## Características
 🔍 **Búsqueda inteligente:** Encuentra Pokémon por nombre (coincidencias exactas y parciales)
@@ -81,11 +81,11 @@ pokedex-vue/
 * **PokeAPI** - API de datos de Pokémon
 
 #### Creado por:
-<center>
+<p align= center>
 <p> 
   <a href="https://github.com/CaroHernz">Carolina Hernández</a>
 </p>
 
 **⭐ ¡Si te gusta este proyecto, dale una estrella en GitHub!**
 
-</center>
+</p>
