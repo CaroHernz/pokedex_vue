@@ -1,15 +1,15 @@
-<p align=center>
+<div align=center>
 
 <img src="public/ultraball_icon.png" alt= "Pokédex - Vue" width="90" height="90">
 
 # Pokédex con Vue.js
 Aplicación web que consume PokeAPI para mostrar información de Pokémon, con funcionalidades de búsqueda y paginación.
 
-<img src="https://img.shields.io/badge/Vue.js-3.x-4FC08D?logo=vuedotjs" >
-<img src="https://img.shields.io/badge/Bootstrap-5.x-7952B3?logo=bootstrap" >
+<img src="https://img.shields.io/badge/Vue.js-3.x-4FC08D?logo=vuedotjs" > 
+<img src="https://img.shields.io/badge/Bootstrap-5.x-7952B3?logo=bootstrap" > 
 <img src="https://img.shields.io/badge/Vite-4.x-646CFF?logo=vite" >
 
-</p>
+</div>
 
 ## Características
 🔍 **Búsqueda inteligente:** Encuentra Pokémon por nombre (coincidencias exactas y parciales)
@@ -82,9 +82,7 @@ pokedex-vue/
 
 #### Creado por:
 <p align= center>
-<p> 
   <a href="https://github.com/CaroHernz">Carolina Hernández</a>
-</p>
 
 **⭐ ¡Si te gusta este proyecto, dale una estrella en GitHub!**
 
