@@ -32,38 +32,63 @@ export const pokemonService = {
             return []
         }
     },
-    async searchPokemon(name, limit=20,offset=0) {
+    async searchPokemon(query, limit=20,offset=0) {
         try {
-            if (!name || name.trim() === ''){
-                return {result:[], total:0, limit, offset}
+            if (!query || query.trim() === ''){
+                return {result:[], total:0, limit, offset};
             };
-            const searchName = name.toLowerCase().trim();
-            try {
-            const pokemon = await this.getPokemonDetails(searchName);
-            return {
-                result:[pokemon],
-                total:1,
-                limit,offset
-            }
-            } catch(exactError) {
-                console.log(`Búsqueda exacta falló, intentando parcial: ${searchName}`);
-                const allPokemons = await this.getPokemons(1000,0);
-                const filtered = allPokemons.results.filter(pokemon => pokemon.name.includes(searchName));
-                console.log(`Coincidencias encontradas: ${filtered.length}`);
+            const searchQuery = query.toLowerCase().trim();
+            const allPokemons = await this.getPokemons(1000,0);
+
+            let filtered = [];
+
+            const isIdQuery = /^\d+$/.test(searchQuery);
+
+            //Búsqueda por ID
+            if (isIdQuery) {
+                console.log('Búsqueda por ID detectada');
+                filtered = allPokemons.results.filter(pokemon => {
+                    const urlParts = pokemon.url.split('/').filter(part => part !== '');
+                    const pokemonId = urlParts[urlParts.length -1];
+                    return pokemonId === searchQuery;
+                });
                 if(filtered.length === 0){
-                    throw new Error(`No se encontraron Pokémon que contengan "${searchName}"`)
+                    filtered = allPokemons.results.filter(pokemon => pokemon.name.includes(searchQuery));
                 }
-                const paginatedResults = filtered.slice(offset,offset+limit)
-                const pokemonIds = paginatedResults.map(p=> {
+            } else {
+                //Buscar por nombre (coincidencia parcial)
+                filtered = allPokemons.results.filter(pokemon => pokemon.name.includes(searchQuery))
+            }
+
+            if(filtered.length === 0) {
+                throw new Error(`No se encontraron Pokémon para "${searchQuery}"`)
+            }
+
+            filtered.sort((a,b) => {
+                if(isIdQuery) {
+                    const urlPartsA = a.url.split('/').filter(part => part !== '');
+                    const urlPartsB = b.url.split('/').filter(part => part !== '');
+                    const idA = urlPartsA[urlPartsA.length -1];
+                    const idB = urlPartsB[urlPartsB.length -1];
+                    if(idA === searchQuery && idB !== searchQuery) return -1;
+                    if(idA !== searchQuery && idB === searchQuery) return 1;
+                } 
+                const aExact = a.name === searchQuery;
+                const bExact = b.name === searchQuery;
+                if (aExact && !bExact) return -1;
+                if (!aExact && bExact) return 1;
+                
+                return a.name.localeCompare(b.name);}
+            )
+            const paginatedResults = filtered.slice(offset,offset+limit)
+            const pokemonIds = paginatedResults.map(p=> {
                     const urlParts = p.url.split('/').filter(part => part !== '');
                     return urlParts[urlParts.length -1];
                 });
-                const results = await this.getMultiplePokemons(pokemonIds)
+            const results = await this.getMultiplePokemons(pokemonIds)
                 return {
                     results, total: filtered.length, limit, offset
                 }
-            }
-
         }catch(error){
             console.error('Error searching Pokemon: ', error);
             if(error.message.includes('404')|| error.message.includes('Not Found')) {

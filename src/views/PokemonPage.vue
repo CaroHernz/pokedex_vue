@@ -58,10 +58,10 @@
       </div>
 
       <!-- Grid de Pokémon -->
-      <div v-else-if="pokemones.length > 0" class="row">
+      <div v-else-if="pokemones && pokemones.length > 0" class="row">
         <PokemonCard 
           v-for="pokemon in pokemones" 
-          :key="pokemon.id"
+          :key="pokemon.id || pokemon.name"
           :pokemon="pokemon"
         />
       </div>
@@ -151,9 +151,12 @@ export default {
         if (this.busqueda && this.busqueda.trim() !== '') {
           // Búsqueda por nombre
           const resultado = await pokemonService.searchPokemon(this.busqueda, this.limit, this.offset);
-          this.pokemones = resultado.results;
-          this.totalResultados = resultado.total;
-          if (resultado.results.length === 0 && this.busqueda.trim() !== '') {
+          this.pokemones = Array.isArray(resultado.results) ? resultado.results : [];
+          this.totalResultados = resultado.total || 0;
+          console.log('Resultado de búsqueda: ', resultado);
+          console.log('Pokémones procesados: ', this.pokemones)
+
+          if (this.pokemones.length === 0 && this.busqueda.trim() !== '') {
             this.error = `No se encontraron Pokémon que contengan "${this.busqueda}"`
           }
         } else {

@@ -47,7 +47,10 @@ export default {
   props: {
     pokemon: {
       type: Object,
-      required: true
+      required: true,
+      validator:(value) => {
+        return value && value.id && value.name;
+      }
     }
   },
   methods: {
