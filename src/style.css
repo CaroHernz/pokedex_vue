@@ -1,8 +1,48 @@
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #212529;
+  --text-secondary: #9d9d9d;
+  --border-color: #dee2e6;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-text: #212529;
+  --input-border: #dce0e4;
+  --pagination-bg: transparent;
+  --pagination-text: #fd7e14;
+  --pagination-hover-bg: #ffcd2a;
+  --pagination-hover-text: #ffffff;
+  --pagination-active-bg: #fd7e14;
+  --pagination-active-text: #ffffff;
+}
+
+/* Modo oscuro */
+[data-theme="dark"] {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #5a5a5b;
+  --text-primary: #e9ecef;
+  --text-secondary: #a0aec0;
+  --border-color: #4a5568;
+  --card-bg: #2d3748;
+  --input-bg: #2d3748;
+  --input-text: #e9ecef;
+  --input-border: #4a5568;
+  --pagination-bg: #2d3748;
+  --pagination-text: #386ee2;
+  --pagination-hover-bg: #3881e8;
+  --pagination-hover-text: #1a1a1a;
+  --pagination-active-bg: #226ade;
+  --pagination-active-text: #1a1a1a;
+}
+
 body {
   margin: 0;
   padding: 0;
   display: flex;
   place-items: center;
+  background-color: var(--bg-primary);
+  color:var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 button {
@@ -12,7 +52,6 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -20,6 +59,17 @@ button {
 button:focus, button:focus-visible{
   outline: none !important;
   box-shadow: none !important;
+}
+.btn-search {
+  background-color: var(--input-border)!important;
+}
+.btn-search i{
+  color: var(--input-text)!important;
+}
+
+input {
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
 }
 
 .card {
@@ -30,23 +80,160 @@ button:focus, button:focus-visible{
   margin: 0;
   padding: 1rem 3rem;
   text-align: center;
+  min-height: 100vh;
   
 }
 .app {
   background-image: url("https://i.pinimg.com/736x/85/2a/75/852a75e0ec9b8aacb317f824096c8c24.jpg");
   background-repeat: repeat;
-  background-size: 442px 785px;
-  background-position: center center;
+  background-size: 50%;
+  background-position: center;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #472121;
-  }
-  a:hover {
-    color: #ff7474;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.dark-mode .app {
+  background-image: url("https://static.vecteezy.com/system/resources/previews/014/022/441/non_2x/water-pokemon-pattern-free-vector.jpg");
+  background-repeat: repeat;
+  background-size: 70%;
+  background-position: center;
+}
+
+/* Pokemon Page */
+.pokemon-page {
+  background-color: var(--bg-primary);
+}
+.pokemon-header, .footer {
+  background: linear-gradient(135deg, #fd8a2c, #ffd23f);
+  transition: all 0.5s ease-in;
+}
+.dark-mode .pokemon-header, .dark-mode .footer{
+  background: linear-gradient(135deg, #053080, #4166b4) ;
+  transition: all 0.5s ease-in;
+}
+
+.page-link {
+  color:var(--pagination-text)!important;
+  background-color: transparent!important;
+  border-color: var(--border-color) !important;
+  transition:all 0.3s ease;
+}
+.page-link:hover {
+  color:var(--pagination-hover-text)!important;
+  background-color: var(--pagination-hover-bg)!important;
+}
+.page-link:focus {
+  color:var(--pagination-hover-text)!important;
+  background-color: var(--pagination-hover-bg)!important;
+}
+.page-item.active .page-link {
+  color: var(--pagination-active-text)!important;
+  background-color: var(--pagination-active-bg)!important;
+  border-color: transparent!important;
+  scale: 1.05;
+  border-radius: 3px;
+}
+.page-item.active .page-link:hover{
+  background-color: var(--pagination-hover-bg);
+  border-color: transparent;
+  color: var(--pagination-hover-text);
+}
+.page-item.disabled .page-link {
+  color: var(--text-secondary) !important; /* Gris para deshabilitado */
+  background-color: transparent;
+  border-color: var(--border-color);
+}
+
+.page-item.disabled .page-link:hover {
+  color: var(--text-secondary);
+  background-color: transparent;
+  border-color: var(--border-color);
+}
+.pagination {
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 0.375rem;
+}
+
+.page-item:first-child .page-link {
+  border-top-left-radius: 0.375rem;
+  border-bottom-left-radius: 0.375rem;
+}
+
+.page-item:last-child .page-link {
+  border-top-right-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
+}
+/* Pokemon Card */
+
+.pokemon-card {
+  background-color: var(--card-bg) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+  border-radius: 15px;
+  color: var(--text-primary) !important;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top-container {
+  position: relative;
+  padding: 20px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.pokemon-image {
+  height: 150px;
+  object-fit: contain;
+}
+
+.pokemon-id {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: var(--bg-primary);
+  padding: 2px 8px;
+  font-size: 0.8rem;
+}
+
+.types-container {
+  display: flex;
+  position:absolute;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 10px;
+  top:10px;
+  left:10px
+}
+
+.type-badge {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.stat-item {
+  background: var(--input-border);
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color:var(--text-primary)
+}
+.card-footer .pokemon-id {
+  background-color: var(--text-secondary);
 }

@@ -1,12 +1,19 @@
 <template>
   <div class="pokemon-page rounded-pill shadow-sm">
     <!-- Header y buscador -->
-    <div class="container-fluid rounded-pill bg-warning bg-opacity-75 text-white py-4 mb-4">
+    <div class="container-fluid rounded-pill pokemon-header text-white py-4 mb-4">
       <div class="container">
-        <h1 class="text-center fw-bold">
-          <i class="fas fa-gamepad"></i> Pokédex .·
-        </h1>
-        
+        <div class="row align-items-center">
+          <div class="text-center">
+            <h1 class="fw-bold mb-0">
+              <i class="fas fa-gamepad"></i> Pokédex .·
+            </h1>
+          </div>
+          <div class="text-end">
+            <DarkModeToggle />
+          </div>
+        </div>
+
         <div class="row justify-content-center mt-4">
           <div class="col-md-8 col-10">
             <div class="input-group">
@@ -18,16 +25,17 @@
                 @input="onBusquedaChange"
                 @keyup.enter="realizarBusqueda"
               >
-              <button class="btn btn-light" @click="realizarBusqueda">
+              <button class="btn btn-search" @click="realizarBusqueda">
                 <i class="fas fa-search"></i>
               </button>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
-  <div class="pokemon-page rounded shadow-sm">
+  <div class="pokemon-page rounded-5 shadow-sm">
     <!-- Contenido principal -->
     <div class="container pt-5 pb-4 px-5">
       <!-- Loader -->
@@ -100,11 +108,14 @@
 <script>
 import { pokemonService } from '../services/pokeapi';
 import PokemonCard from '@/components/PokemonCard.vue';
+import DarkModeToggle from '../components/Toggle.vue';
+import { useThemeStore } from '../stores/themeStore';
 
 export default {
   name: 'PokemonPage',
   components: {
-    PokemonCard
+    PokemonCard,
+    DarkModeToggle
   },
   data() {
     return {
@@ -135,9 +146,15 @@ export default {
         pages.push(i)
       }
       return pages;
+    },
+    isDarkMode() {
+      const themeStore = useThemeStore();
+      return themeStore.initializeTheme();
     }
   },
   async mounted() {
+    const themeStore = useThemeStore();
+    themeStore.initializeTheme();
     await this.cargarPokemones();
   },
   methods: {
@@ -227,58 +244,5 @@ export default {
 </script>
 
 <style scoped>
-.pokemon-page {
-  background-color: white;
-}
-.page-link {
-  color:#fd7e14;
-  background-color: transparent;
-  transition:all 0.3s ease;
-}
-.page-link:hover {
-  color:white;
-  background-color: #ffcd2a;
-}
-.page-link:focus {
-  color:#fd7e14;
-  background-color: #fff3cd;
-}
-.page-item.active .page-link {
-  color: white;
-  background-color: #fd7e14;
-  border-color: transparent;
-  scale: 1.01;
-  border-radius: 3px;
-}
-.page-item.active .page-link:hover{
-  background-color: #fd7e14;
-  border-color: transparent;
-  color: white;
-  
-}
-.page-item.disabled .page-link {
-  color: #6c757d; /* Gris para deshabilitado */
-  background-color: transparent;
-  border-color: #dee2e6;
-}
 
-.page-item.disabled .page-link:hover {
-  color: #6c757d;
-  background-color: transparent;
-  border-color: #dee2e6;
-}
-.pagination {
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-  border-radius: 0.375rem;
-}
-
-.page-item:first-child .page-link {
-  border-top-left-radius: 0.375rem;
-  border-bottom-left-radius: 0.375rem;
-}
-
-.page-item:last-child .page-link {
-  border-top-right-radius: 0.375rem;
-  border-bottom-right-radius: 0.375rem;
-}
 </style>

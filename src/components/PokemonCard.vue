@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="card-footer bg-transparent border-0 p-0">
-        <span class="pokemon-id bg-secondary rounded opacity-75">#{{ String(pokemon.id).padStart(3,'0') }}</span>
+        <span class="pokemon-id rounded opacity-75">#{{ String(pokemon.id).padStart(3,'0') }}</span>
       </div>
             </div>
         </div>
@@ -91,74 +91,6 @@ export default {
 </script>
 
 <style scoped>
-.pokemon-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: none;
-  border-radius: 15px;
-}
-
-.pokemon-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.card-img-top-container {
-  position: relative;
-  padding: 20px;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
-
-.pokemon-image {
-  height: 150px;
-  object-fit: contain;
-}
-
-.pokemon-id {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  color: white;
-  padding: 2px 8px;
-  font-size: 0.8rem;
-}
-
-.types-container {
-  display: flex;
-  position:absolute;
-  justify-content: center;
-  gap: 5px;
-  margin-bottom: 10px;
-  top:10px;
-  left:10px
-}
-
-.type-badge {
-  padding: 5px 10px;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  text-transform: capitalize;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.stats-container {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.stat-item {
-  background: #f8f9fa;
-  padding: 3px 8px;
-  border-radius: 10px;
-  font-size: 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
 
 /* Colores para tipos de Pokémon */
 .type-normal { background-color: #A8A878; color: white; }
