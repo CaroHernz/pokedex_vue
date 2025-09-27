@@ -1,9 +1,9 @@
 <template>
   <div id="app">    
-    <v-main class="container mt-4">
+    <main class="container mt-4">
       <PokemonPage />
       <Footer />
-    </v-main>
+    </main>
   </div>
 </template>
 
@@ -20,5 +20,7 @@ export default {
 }
 </script>
 <style scoped>
-
+.app {
+  min-height: 100vh;
+}
 </style>
