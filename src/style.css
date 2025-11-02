@@ -81,6 +81,7 @@ input {
   padding: 1rem 3rem;
   text-align: center;
   min-height: 100vh;
+  width: 100%;
   
 }
 .app {
@@ -100,6 +101,7 @@ input {
 /* Pokemon Page */
 .pokemon-page {
   background-color: var(--bg-primary);
+  max-width: 1200px;
 }
 .pokemon-header, .footer {
   background: linear-gradient(135deg, #fd8a2c, #ffd23f);
@@ -236,4 +238,23 @@ input {
 }
 .card-footer .pokemon-id {
   background-color: var(--text-secondary);
+}
+
+@media screen and (max-width: 768px) {
+  #app {
+    padding: 1rem;
+  }
+  .pokemon-page {
+    width: 100%;
+  }
+
+}
+@media screen and (max-width: 450px) {
+  #app {
+    padding: 0.3rem;
+  }
+  .pokemon-page {
+    width: 100%;
+  }
+
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="col-xs-12 col-md-6 col-lg-4 mb-4">
+    <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
         <div class="card h-100 shadow-sm border pokemon-card">
             <div class="card-img">
                 <img 
