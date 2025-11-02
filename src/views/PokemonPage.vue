@@ -87,7 +87,7 @@
           <ul class="pagination">
             <li class="page-item" :class="{ disabled: paginaActual === 1 }">
               <button class="page-link" @click="cambiarPagina(paginaActual-1)">
-                <i class="fas fa-chevron-left"></i> Anterior
+                <i class="fas fa-chevron-left"></i>
               </button>
             </li>
             <li v-for="page in paginasMostradas" :key="page" class="page-item" :class="{ active: page === paginaActual }">
@@ -95,7 +95,7 @@
               </li>
             <li class="page-item" :class="{disabled:paginaActual === totalPaginas}">
               <button class="page-link" @click="cambiarPagina(paginaActual+1)">
-                Siguiente <i class="fas fa-chevron-right"></i>
+                 <i class="fas fa-chevron-right"></i>
               </button>
             </li>
           </ul>

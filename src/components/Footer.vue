@@ -20,6 +20,7 @@
 <style scoped>
 .footer-bg {
     background-color: var(--bg-primary);
+    max-width: 1200px;
 }
 .footer p {
     color:var(--bg-primary);
